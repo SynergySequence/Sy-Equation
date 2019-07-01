@@ -1,0 +1,36 @@
+/**
+ * Synergy Sequence Theory
+ * Created by Wesley Long on 6/24/2019.
+ *
+ * THIS SOFTWARE IS PROVIDED BY WESLEY LONG “AS IS” WITHOUT ANY SUPPORT.
+ * IN NO EVENT SHALL WESLEY LONG BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ */
+function SyπEquation(orbit_type,positions,radius,position_number){
+    this.q  = orbit_type;
+    this.p  = positions;
+    this.a  = 360 / this.p;
+    this.r  = radius;
+    this.ux = 3+((((2/9)*Math.pow(10,3))/360));
+    this.ux = ((this.ux*162)*28)/Math.pow(10,6);
+    this.u  = this.r - (this.r*this.ux);
+    this.x  = this.u/this.r;
+    this.Rb = (126/2.162)
+    this.R  = this.Rb-this.x;
+    this.π  = 180/(this.R);
+    this.c  = (2*this.π)*this.r;
+    this.d  = this.p / this.r;
+    this.y  = ( 1 / (this.p-(9/8)) ); //expand
+    this.g  = this.π - this.y;
+    this.z  = this.q>0 ? this.g : this.p; //expand or collapse
+    this.o  = this.r / this.z;
+    this.n  = this.o * this.r * this.d;
+    this.deg = (this.π/ 180 * (360 / this.p) * position_number );
+    this.xy={x:Math.sin(this.deg)*(this.n),y:Math.cos(this.deg)*(this.n)};
+}
