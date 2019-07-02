@@ -15,7 +15,7 @@
  orbit_type = Expanded =1 | Compressed = 0
  positions = Number of Positions
  radius = Radius of Circle to be placed in formation.
- position_number = Current Placement Number
+ position_number = Current Position Number
  
  *Note this.n is = r_2 which is the solve.
  
