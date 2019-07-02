@@ -32,5 +32,5 @@ function SyπEquation(orbit_type,positions,radius,position_number){
     this.o  = this.r / this.z;
     this.n  = this.o * this.r * this.d;
     this.deg = (this.π/ 180 * (360 / this.p) * position_number );
-    this.xy={x:Math.sin(this.deg)*(this.n),y:Math.cos(this.deg)*(this.n)};
+    this.xy={x:Math.sin(this.deg)*(this.n),y:-Math.cos(this.deg)*(this.n)};
 }
