@@ -11,6 +11,14 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
+ 
+ orbit_type = Expanded =1 | Compressed = 0
+ positions = Number of Positions
+ radius = Radius of Circle to be placed in formation.
+ position_number = Current Placement Number
+ 
+ *Note this.n is = r_2 which is the solve.
+ 
  */
 function SyπEquation(orbit_type,positions,radius,position_number){
     this.q  = orbit_type;
