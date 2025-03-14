@@ -1,0 +1,527 @@
+/**
+ * Synergy Standard Model
+ * Created by Wesley Long on 3/14/2025.- Synergy Research
+ *
+ * THIS SOFTWARE IS PROVIDED BY WESLEY LONG “AS IS” WITHOUT ANY SUPPORT.
+ * IN NO EVENT SHALL WESLEY LONG BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+
+ */
+
+class SynergyNumbers{
+    constructor(){}
+    pe(){
+        const aH = 1837.5435195254177;
+        const aHe = 7296.583069293829;
+        const aLi = 12651.341295145236;
+        const aBe = 16428.84796037566;
+        const aB = 19706.195879037467;
+        const aC = 21895.570647837092;
+        const aN = 25534.198490071947;
+        const aO = 29165.534492943607;
+        const aF = 34633.32600655195;
+        const aNe = 36786.89207696254;
+        const aNa = 41909.426150321044;
+        const aMg = 44307.03893062031;
+        const aAl = 49186.26125607996;
+        const aSi = 51197.827128840625;
+        const aP = 56463.92424173246;
+        const aS = 58444.09249601675;
+        const aCl = 64623.92635632546;
+        const aAr = 72823.78201622353;
+        const aK = 71274.64897311093;
+        const aCa = 73061.31368347966;
+        const aSc = 81952.81580213555;
+        const aTi = 87259.80099551103;
+        const aV = 92864.32695966195;
+        const aCr = 94786.91155576066;
+        const aMn = 100149.8484909378;
+        const aFe = 101803.55690138972;
+        const aCo = 107432.846681202;
+        const aNi = 106995.78403834715;
+        const aCu = 115842.35293136709;
+        const aZn = 119188.76031112188;
+        const aGa = 127102.4112760145;
+        const aGe = 132403.03160510585;
+        const aAs = 136579.05998738494;
+        const aSe = 143962.41995561248;
+        const aBr = 145661.78311920533;
+        const aKr = 152760.75333124486;
+        const aRb = 155804.42177023814;
+        const aSr = 159729.56421065138;
+        const aY = 162071.7795784233;
+        const aZr = 166298.05310901845;
+        const aNb = 169364.58511033503;
+        const aMo = 174914.81968450724;
+        const aTc = 178650.06439830447;
+        const aRu = 184250.1970292391;
+        const aRh = 187592.59754326378;
+        const aPd = 194001.20921767308;
+        const aAg = 196639.43315847422;
+        const aCd = 204926.93672751795;
+        const aIn = 209308.78529684656;
+        const aSn = 216404.83877314086;
+        const aSb = 221963.7725116734;
+        const aTe = 232615.14456547803;
+        const aI = 231341.75789676417;
+        const aXe = 239342.9601539309;
+        const aCs = 242281.30155726185;
+        const aBa = 250342.8821292963;
+        const aLa = 253219.10623803266;
+        const aCe = 255426.02334938027;
+        const aPr = 256869.00908688284;
+        const aNd = 262947.92024448526;
+        const aPm = 264329.17691585864;
+        const aSm = 274103.88758222305;
+        const aEu = 277024.4515431671;
+        const aGd = 286665.90384516906;
+        const aTb = 289714.53438084904;
+        const aDy = 296231.1564258257;
+        const aHo = 300661.3717656504;
+        const aEr = 304906.9869001564;
+        const aTm = 307960.3024426272;
+        const aYb = 315454.2679470514;
+        const aLu = 318957.4681027133;
+        const aHf = 325383.74790389964;
+        const aTa = 329860.7221636408;
+        const aW = 335134.7600923336;
+        const aRe = 339448.0653716482;
+        const aOs = 346787.119394721;
+        const aIr = 350404.4186068185;
+        const aPt = 355631.93824629375;
+        const aAu = 359062.14617845014;
+        const aHg = 365671.70727351034;
+        const aTl = 372576.5322625048;
+        const aPb = 377735.50861196604;
+        const aBi = 380962.87853707647;
+        const aPo = 380998.6067269963;
+        const aAt = 382821.5665677953;
+        const aRn = 404697.0846573836;
+        const aFr = 406520.04449818266;
+        const aRa = 411988.9240205797;
+        const aAc = 413811.8838613787;
+        const aTh = 422995.48156976566;
+        const aPa = 421169.13466958236;
+        const aU = 433917.149348045;
+        const aNp = 432041.482269369;
+        const aPu = 444802.2011549622;
+        const aAm = 442979.24131416314;
+        const aCm = 450271.08067735925;
+        const aBk = 450271.08067735925;
+        const aCf = 457562.92004055536;
+        const aEs = 459385.87988135434;
+        const aFm = 468500.67908534955;
+        const aMd = 470323.6389261485;
+        const aNo = 472146.5987669475;
+        const aLr = 484907.31765254075;
+        const aRf = 486730.2774933398;
+        const aDb = 488553.2373341388;
+        const aSg = 490376.1971749378;
+        const aBh = 492199.15701573686;
+        const aHs = 490376.1971749378;
+        const aMt = 506782.835742129;
+        const aDs = 512251.7152645261;
+        const aRg = 514074.6751053251;
+        const aCn = 519543.5546277222;
+        const aNh = 521366.5144685213;
+        const aFl = 526835.3939909183;
+        const aMc = 526835.3939909183;
+        const aLv = 534127.2333541143;
+        const aTs = 535950.1931949134;
+        const aOg = 535950.1931949134;
+        const aUue = 574232.3498516929;
+        return  { aH, aHe, aLi, aBe, aB, aC, aN, aO, aF, aNe, aNa, aMg, aAl, aSi, aP, aS, aCl, aAr, aK, aCa, aSc, aTi, aV, aCr, aMn, aFe, aCo, aNi, aCu, aZn, aGa, aGe, aAs, aSe, aBr, aKr, aRb, aSr, aY, aZr, aNb, aMo, aTc, aRu, aRh, aPd, aAg, aCd, aIn, aSn, aSb, aTe, aI, aXe, aCs, aBa, aLa, aCe, aPr, aNd, aPm, aSm, aEu, aGd, aTb, aDy, aHo, aEr, aTm, aYb, aLu, aHf, aTa, aW, aRe, aOs, aIr, aPt, aAu, aHg, aTl, aPb, aBi, aPo, aAt, aRn, aFr, aRa, aAc, aTh, aPa, aU, aNp, aPu, aAm, aCm, aBk, aCf, aEs, aFm, aMd, aNo, aLr, aRf, aDb, aSg, aBh, aHs, aMt, aDs, aRg, aCn, aNh, aFl, aMc, aLv, aTs, aOg, aUue }
+    }
+    numbers(alt = false, sort = false, type = "all"){
+        const c  = alt ? this.c2 : this.c1 ;
+        const γ  = 0; //Photon
+        const gl = 0; //Gloun
+        const gr = 0; //Graviton
+        const Td = 9.365741240486245e-26; // 1 day
+        const Th = 2.247777897716699e-24; // 1 hour
+        const Ts = 8.092000431780115e-21; // 1 Second
+        const Tml = 8.092000431780115e-18; // 1 millisecond
+        const Tmc = 8.092000431780116e-15; // 1 microsecond
+        const Tns = 8.092000431780115e-12; // 1 nanosecond
+        const Tps = 8.092000431780116e-9; // 1 picosecond
+        const Tfs = 0.000008092000431780115; // 1 femtosecond
+        const νe  = 0.0000002349668226846;//Electron Neutrino  n=1/207*20560
+        const νμ  = 0.000002349668226846369;//Muon Neutrino
+        const ντ  = 0.000011748341134231847;//Tau Neutrino
+        const νs  = 0.000011748341134231847;//Sterile Neutrino
+        const L = 0.0000028551524080355; //Light Intermediary Particle (alt photon n=1/207*1692
+        const h = 0.0007272727272727272;//Planck's constant n=1/1375
+        const Tas = 0.008092000431780115; // 1 attosecond
+        const W   = 0.01957; //Weak Force - 10**5 times weaker than strong force exactly. | S/W =100000 = 1957/0.01957 = 10**5
+        const emR = 0.000000000002426379528757543193958818899481112436442; // Radio Waves
+        const emM = 0.00000000242637952875754310671711366927897485235022; // Microwaves
+        const emIr = 0.00000242637952875754395044133847336720322118708282; // Infrared
+        const emVr = 0.00000346625646965363300486913031295266307552083163; // Visible Red
+        const emV = 0.00000606594882189385924082863574269275375172583153; // Visible Violet
+        const emU = 0.0002426379528757543; // Ultraviolet
+        const emX = 0.02426379528757543; // X-Rays
+        const e  = 1; //Electron Mass
+        const emG = 2.4263795287575434; // Gamma Rays
+        const qU = 4.501163903377373; //Up Quark
+        const Tzs = 8.092000431780118; // 1 zeptosecond
+        const qD = 9.393732485320507; //Down Quark
+        const Wc = 66.54; //Weak Force Coupling constant
+        const pI = Math.sqrt(21957);//148.17894587288708337769627011577; //Pion
+        const qS = 185.90666136656134; //Strange Quark
+        const m = 207; //Muon Mass
+        const ka = 964.53; //Kaon
+        const Sc = 978.53; //Strong Force Coupling Constant
+        const S = 1957; //Strong Nuclear Force
+        const p = 1836.1813326060937; //Proton Mass
+        const n = 1838.1813326060937; //Neutron Mass
+        const u = 1822.9610527929553; //Automic Mass Unit
+        const dA = 1834.5; //Deuteron 1/2
+        const wA = 1853.045773162008; //Daisy Hope Particle/Energy?
+        const BM = 1883.6079701683207; //Bubble Mass Index Maxium
+        const Sr = 1897.3533223334352; //Schwarzschild radius
+        const qC = 2494.661514268832; //Charm Quark
+        const d = 3669; //Deuteron Mass
+        const Tys = 8092.000431780116; // 1 yoctosecond
+        const qB = 8181.255254814213; //Bottom Quark
+        const aO = 29158; //Oxygen Atom
+        const aC = 21895; //Carbon Atom
+        const H2O = 32840; //Water Molecule
+        const bW = 157406; //Strong W Boson
+        const bZ = 178572; //Weak Z Boson
+        const bH = 244630; //Higgs Boson
+        const qT = 338813.170888002; //Top Quark
+        const eM = 10118109.2; //Electron Magnetic Moment
+        const k = 15156930; //Boltzmann constant
+        const a = 66111788; //Avogadro's  constant
+        const eV = 175888888888; //Electron Volt
+        const j = 12214806684443; //Joule
+        const Hc = 24151886888888; //Hubble constant
+        //const ka = 96497681523582850; //Kaon ??
+        const Hs = 3066405070062704600; //Sugar Glider Energy Per Day
+        const ε0 = 9721111119721111111; //Electric Vacuum Permittivity
+        const Hl = 25553375583855874000; //Lemur Energy Per Day
+        const G = 73271409227666580000; //Gravitational constant
+        const Hm = 127565763288285860000; //Human Energy Per Day
+        const Tr = 1097812076491272500000; //Tardigrades Energy Per Day
+        const He = 3577472581739822448640; //Elephant Energy Per Day
+        const C2 = 3660814743730583500000; //Speed of Light 2
+        const C = 3661906925381139600000; //Speed of Light
+        const Hb = 7666012675156762165248; //Humming Bird Energy Per Day
+        const Tpt = 150095152972589007110144; //Planck Time
+        const μ0 = 1379426915655135800000000; //Magnetic Vacuum Permittivity
+        const α  = 8011121769383250000000000000; //Fine-structure constant
+        const ej = 6852004036967058907839345636965988404559872; //eV per Joule
+
+        const categories = {
+            atoms: ["aH", "aHe", "aLi", "aBe", "aB", "aC", "aN", "aO", "aF", "aNe", "aNa", "aMg", "aAl", "aSi", "aP", "aS", "aCl", "aAr", "aK", "aCa", "aSc", "aTi", "aV", "aCr", "aMn", "aFe", "aCo", "aNi", "aCu", "aZn", "aGa", "aGe", "aAs", "aSe", "aBr", "aKr", "aRb", "aSr", "aY", "aZr", "aNb", "aMo", "aTc", "aRu", "aRh", "aPd", "aAg", "aCd", "aIn", "aSn", "aSb", "aTe", "aI", "aXe", "aCs", "aBa", "aLa", "aCe", "aPr", "aNd", "aPm", "aSm", "aEu", "aGd", "aTb", "aDy", "aHo", "aEr", "aTm", "aYb", "aLu", "aHf", "aTa", "aW", "aRe", "aOs", "aIr", "aPt", "aAu", "aHg", "aTl", "aPb", "aBi", "aPo", "aAt", "aRn", "aFr", "aRa", "aAc", "aTh", "aPa", "aU", "aNp", "aPu", "aAm", "aCm", "aBk", "aCf", "aEs", "aFm", "aMd", "aNo", "aLr", "aRf", "aDb", "aSg", "aBh", "aHs", "aMt", "aDs", "aRg", "aCn", "aNh", "aFl", "aMc", "aLv", "aTs", "aOg", "aUue"],
+            molecules: ["H2O"],
+            force: ["W", "Wc", "S", "Sc"],
+            energy: ["eM","k","a","eV","j","Hc","ε0","G","C", "C2", "μ0","α"],
+            life: ["Hs", "Hl", "Hm", "Tr", "He", "Hb"],
+            spectrum: ["emR", "emM", "emIr", "emVr", "emV", "emU", "emG",],
+            time: ["Td", "Th", "Ts", "Tml", "Tmc", "Tns", "Tps", "Tfs", "Tzs", "Tys", "Tpt"],
+            particles: ["γ", "gl", "gr", "νe", "νμ", "ντ", "νs", "L", "e", "p", "n", "qU", "qD", "qS", "qC", "qB", "qT"],
+            leptons:["γ", "gl", "gr", "νe", "νμ", "ντ", "νs", "L", "e", "p", "n","m","d"],
+            bosons:["bW","bZ","bH"],
+            quarks:["qU", "qD", "qS", "qC", "qB", "qT"]
+        };
+        let data = { c,γ,gl,gr,Td, Th, Ts, Tml, Tmc, Tns, Tps, Tfs,νe,νμ,ντ,νs,L,h,Tas,W,emR, emM,emIr,emVr,emV,emU,emX,e,emG, qU,Tzs,qD,pI,Wc,qS,m,ka,Sc,qC,S,p,n,u,dA, BM, wA, Sr,d,Tys,qB,aO,aC,H2O,bW,bZ,bH,qT,eM,k,a,eV,j,Hc,Hs,ε0,Hl,G,Hm,Tr,He,C2,C,Hb,Tpt,μ0,α,ej };
+
+        //let DATA = {...data,...this.pe()}
+        let DATA = {...data}
+
+        let filteredData = { ...DATA };
+        if (type !== "all" && categories[type]) {
+            filteredData = Object.fromEntries(
+                Object.entries(data).filter(([key]) => categories[type].includes(key))
+            );
+        }
+        if (sort) {
+            filteredData = Object.fromEntries(
+                Object.entries(filteredData).sort((a, b) => a[1] - b[1])
+            );
+        }
+        return filteredData;
+    }
+    model(alt=false,unit=false, sort=false,type='all'){
+        const number= this.numbers(alt,sort,type);
+        let mass={};
+        for(let i in number){
+            if(i!='c')
+                mass[i]=this.Mu(number[i],unit);
+        }
+        return mass;
+    }
+}
+
+
+class SynergyStandardModel{
+    constructor(){
+        this.dc = 2240;
+        this.pi = { a:3940245000000, b:2217131, c:1253859750000 };
+        this.pin ={ a:20250000, b:194580, c:61919, d:2217131 };
+        this.bu = { a:1352, b:5.442245307660239, c:1.2379901546155434e-34 }
+        this.c1 = this.Qp().cx;
+        this.c2 = this.Qp().cy;
+        this.SC = 1/162;
+        this.C = this.Ma(this.Mx(1/this.c1));
+        this.G = this.Ma(73271409227666580000);
+        this.Z0 = this.C / this.G; // Structured vacuum impedance
+    }
+    sym(n) {
+        const sq = Math.pow(3, 2); // 3^2
+        return this.rd(sq - (n / sq - this.fl(n / sq)) * sq);
+    }
+    dr(n) {
+        return this.sym(this.sym(n));
+    }
+    pr(n) {
+        return this.sym(n);
+    }
+    grp(n) {
+        const th = 3; // constant 3
+        return this.rd(Math.pow(th, 2) - ((n) / th - this.fl((n) / th)) * Math.pow(th, 2));
+    }
+    rd(n) {
+        return Math.round(n);
+    }
+    fl(n) {
+        return Math.floor(n);
+    }
+    // Synergy Gauss’s Law (Electric Field from Structured Charge)
+    gaussE(rho) {
+        return rho * this.C * this.Z0;
+    }
+    // Synergy Gauss’s Law for Magnetism (No Magnetic Monopoles)
+    gaussB(B) {
+        return B * 0;
+    }
+    // Synergy Faraday’s Law (Structured Electromagnetic Wave Propagation)
+    faraday(E) {
+        return -1 * (E / this.C);
+    }
+    //Synergy Ampère-Maxwell Law (Structured Charge-Mass Interactions)
+    ampere(J, E) {
+        return (this.Z0 / this.C) * J + (1 / this.C ** 2) * (E);
+    }
+    //Synergy Wolfgang's Devil Equation
+    D(n=1){
+        const a = n+0.2169108218;
+        const b = (a+1);
+        return 1/(a*b);
+    }
+    Dsy(n=1){
+        const a = n + (1-(1/ Math.sqrt(1.62)));
+        const b = (a+1);
+        console.log(a,b)
+        return 1/(a*b);
+    }
+    //Synergy Demon Equation
+    Dm(n=11,p=-674848.797595188){
+        const sin = 1/((999-(1/sy.D(n)))-(1/((sy.PI(p)+2)/2)**2));
+        return (2169108218-sin)/((Math.sqrt(5)/2)+.5);
+    }
+    //Synergy Feyn Equation
+    feyn(n){
+        const q = Math.sqrt(5)/2;
+        const Phi = q+0.5;
+        const pha=360/Math.pow(Phi,2);
+        return 1/(pha-(10*((this.PI(n)/3)-1)));
+    }
+    //Synergy Stability Function
+    stability(n=1){
+        let N = (10**15)*(2240/((Math.sqrt(5)/2)));
+        let LIM = this.B(N);
+        const seq={
+            fib:{
+                1:[1,1,2,3,5,8,4,3,7,1,8,9,8,8,7,6,4,1,5,6,2,8,1,9],
+                2:[2,2,4,6,1,7,8,6,5,2,7,9,7,7,5,3,8,2,1,3,4,7,2,9],
+                3:[3,3,6,9,6,6,3,9,3,3,6,9,6,6,3,9,3,3,6,9,6,6,3,9],
+                4:[4,4,8,3,2,5,7,3,1,4,5,9,5,5,1,6,7,4,2,6,8,5,4,9],
+                5:[5,5,1,6,7,4,2,6,8,5,4,9,4,4,8,3,2,5,7,3,1,4,5,9],
+                6:[6,6,3,9,3,3,6,9,6,6,3,9,3,3,6,9,6,6,3,9,3,3,6,9],
+                7:[7,7,5,3,8,2,1,3,4,7,2,9,2,2,4,6,1,7,8,6,5,2,7,9],
+                8:[8,8,7,6,4,1,5,6,2,8,1,9,1,1,2,3,5,8,4,3,7,1,8,9],
+                9:[9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9]
+            },
+            dc:[1,2,4,8,7,5]
+        }
+        let i = (n-1) % 24;
+        let di = (n-1) % 6;
+        let dr = this.dr(n);
+        let pr = this.pr(n);
+        let F =  seq.fib[1][i];
+        let f =  seq.fib[dr][i];
+        let dc = seq.dc[di];
+        let exp = Math.sqrt(dr*pr*F*f*dc*n);
+        let diff = LIM-exp;
+        let sT = diff/LIM;
+        return sT;
+    }
+
+    //Synergy Syπ Position (Inverse)
+    Px(n=1){
+        return this.pin.a * (this.pin.b - (this.pin.c * n)) / (this.pin.d * n);
+    }
+    //Synergy Syπ Equation (Simplified)
+    PI(n=162){
+        return this.pi.a / ((this.pi.b * n ) + this.pi.c);
+    }
+    //Bubble Mass Base Equation
+    Mb(n=73271409227666580000){
+        let cal = ((n/216)/100)*9;
+        return cal;
+    }
+    //Bubble Mass Detect???
+    Md(n=1, p=this.Mb()){
+        let m1 = this.Ma(p);
+        let m2 = ((n-m1)/2.16)*this.PI(n);
+        return {n,p, m2, rat:(m2/m1), comp:(n/m2)};
+    }
+    Me(n=1,c=1){
+        return this.Ma(this.Mx(1/(c*n)))
+    }
+    //Synergy Bubble Mass Index
+    Mi(n=1) {
+        const M = Math.sqrt(2) + (1 / (n * (1 / Math.pow(10, 2))));
+        return this.dc / Math.sqrt(M);
+    }
+    Mn(){
+        return this.Mi((2240/(Math.sqrt(5)/2))*(10**15))
+    }
+    //Synergy Bubble Mass Position (Inverse)
+    Mx(n=1){
+        return n / (this.bu.a * this.bu.b * this.bu.c)
+    }
+    //Synergy Bubble Mass Equation (Simplified)
+    Ma(n = 1, units = false) {
+        return n * this.bu.a * this.bu.b * this.bu.c;
+    }
+    Mu(n = 1, units = false) {
+        if (!units) {
+            return n * this.bu.a * this.bu.b * this.bu.c;
+        } else {
+            const kg = n * this.bu.a * this.bu.b * this.bu.c;
+            const joules = kg * (this.c1 ** 2);
+            const mev = kg * (this.c1 ** 2) * this.Ma(6852004036967058907839345636965988404559872);
+            const gev = mev / 1000;
+
+            if (units === 'GeV') {
+                return gev;
+            } else if (units === 'MeV') {
+                return mev;
+            } else if (units === 'j') {
+                return joules;
+            }else {
+                return { kg, joules, MeV: mev, GeV: gev };
+            }
+        }
+    }
+    //Synergy Einstein Field Equation Experimental
+    EFE(n=1, G=this.G, c=this.Qp().cx){
+        return ((8*this.PI(n)*this.Ma(G))/(c**4))*(this.Ma(n)*(c**2));
+    }
+    //Synergy Pi Mass Equation
+    S(n=0){
+        return this.M(n+this.SC) * this.P(n); //162 - 0.23 = 161.77 -> wave(0) =  -3.1424910548951004e-37 (tiny pi like number?)
+    }
+    //Synergy Pi Mass Position (Inverse)
+    Sx(n=0){
+        const C = this.bu.a * this.bu.b * this.bu.c;
+        const x = C*this.pi.a*this.SC - n*this.pi.c;
+        const y = n*this.pi.b  - C*this.pi.a;
+        return Math.floor(x / y);
+    }
+    //Schrödinger Wave Equation
+    Wv(n=0){
+        const ℏ = 1.054571817e-34;
+        return  (-1 * (ℏ ** 2) / (2 * n));
+    }
+    //Synergy Schrödinger Wave Equation
+    Wa(n=1, V=0){
+        const m = this.S(n)
+        return this.Wv(m)+V;
+    }
+    //Synergy Schrödinger Wave Position (Inverse)
+    Wx(n=1, V=0){
+        const M = this.Wv(n)+V;
+        return this.Sx(M);
+    }
+    //Quadrian Speed Equation
+    Qs(n){
+        const q = Math.sqrt(Math.pow(1, 2) + Math.pow(0.5, 2));
+        const a = 22.5 * (8 / 6);
+        const b = a - (1 / (1000 - n));
+        const c = b * Math.pow(10, 7);
+        const d = 1 / ( q / n );
+        return c-d;
+    }
+    //Quadrian Path Equation
+    Qp() {
+        const Z = 1/2/4/8/7/5;
+        const q = Math.sqrt(Math.pow(1, 2) + Math.pow(0.5, 2));
+        const D = 8*q;
+        const sqrt2 = Math.sqrt(2);
+        const tx = (q + 0.5) * (15 + sqrt2);
+        const ty = 90 - tx;
+        const tz = ty * 2;
+        const td = ty - tx;
+        const tu = tz * 7;
+        const t1 = 4 * tx + 3 * ty;
+        const t2 = 3 * tx + 4 * ty;
+        const px = tu + tx;
+        const py = tu + ty;
+        const vx = Math.pow(10, 3)-px;
+        const vy = Math.pow(10, 3)-py;
+        const pxz = Z*t1;
+        const pyz = Z*t2;
+        const Pe= D+pxz;
+        const Pn= D+pyz;
+        const K = Pn-Pe;
+        const pt = vy/vx;
+        const cy = this.Qs(px);
+        const cx = this.Qs(py);
+        const G  = this.Me(50-(1/44), cx);
+        const C  = this.Me(1, cx);
+        const μ0 = (4*this.PI(162))*(10e-8)
+        const ε0 = 1/(μ0*(cx**2));
+        const ZO = C / ε0;
+        const id = ε0 * μ0 * (cx**2);
+        return { id,q, tx, ty, td, tu, t1, t2, px, py, vx,vy,pt,pxz,pyz,K,G,C,ZO,ε0,μ0,cy, cx };
+    }
+    meta(n,alt=false){
+        const c  = alt ? this.c2 : this.c1 ;
+        return{
+            number:n,
+            root:this.dr(n),
+            group:this.grp(n),
+            polar:this.pr(n),
+            P:this.PI(n),
+            M:this.Ma(n),
+            Mx:this.Mx(n),
+            EFE:this.EFE(n,73271409227666580000,c),
+            Wv:this.Wv(n),
+            Wx:this.Wx(this.Wv(n)),
+            stabbility:this.stability(n),
+        }
+    }
+}
+
+const sy = new SynergyStandardModel();
+
+function synergy(){
+    const numb = new SynergyNumbers();
+    let numbers = numb.numbers();
+    for(let i in numbers){
+        console.log(i,sy.Ma(numbers[i]))
+    }
+    console.log(sy.Qp())
+}
+synergy();
+
