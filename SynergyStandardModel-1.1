@@ -1,0 +1,252 @@
+class SynergyStandardModel{
+    constructor(){
+        this.dc = 2240;
+        this.pi = { a:3940245000000, b:2217131, c:1253859750000 };
+        this.pin ={ a:20250000, b:194580, c:61919, d:2217131 };
+        this.bu = { a:1352, b:5.442245307660239, c:1.2379901546155434e-34 }
+        this.cx = this.Qp().cx;
+        this.cy = this.Qp().cy;
+        this.SC = 1/162;
+    }
+    sym(n) {
+        const sq = Math.pow(3, 2); // 3^2
+        return this.rd(sq - (n / sq - this.fl(n / sq)) * sq);
+    }
+    dr(n) {
+        return this.sym(this.sym(n));
+    }
+    pr(n) {
+        return this.sym(n);
+    }
+    grp(n) {
+        const th = 3; // constant 3
+        return this.rd(Math.pow(th, 2) - ((n) / th - this.fl((n) / th)) * Math.pow(th, 2));
+    }
+    rd(n) {
+        return Math.round(n);
+    }
+    fl(n) {
+        return Math.floor(n);
+    }
+    //Synergy Gauss’s Law (Electric Field from Structured Charge)
+    gaussE(rho) {
+        const q = this.Qp();
+        return rho * q.C * q.Z0;
+    }
+    //Synergy Gauss’s Law for Magnetism (No Magnetic Monopoles)
+    gaussB(B) {
+        return B * 0;
+    }
+    //Synergy Faraday’s Law (Structured Electromagnetic Wave Propagation)
+    faraday(E) {
+        const q = this.Qp();
+        return -1 * (E / q.C);
+    }
+    //Synergy Ampère-Maxwell Law (Structured Charge-Mass Interactions)
+    ampere(J, E) {
+        const q = this.Qp();
+        return (q.Z0 / q.C) * J + (1 / q.C ** 2) * (E);
+    }
+    //Synergy Coupling - Wolfgang Feyn Equation
+    Dw(n=11){
+        let mx = Math.sqrt(2) + (1 / Math.sqrt((15**2) + (1 / Math.sqrt(((n + 5) * 20) - (1 / 20)))));
+        let a = n + (Math.sqrt(mx) - 1);
+        return 1/(a * (a + 1));
+    }
+    //Synergy Feyn Plank constant
+    Dh(){
+        const f = this.Dw(11);
+        const m = this.Ma(1/f);
+        const H = this.Mn()*(10**2)
+        return m/H;
+    }
+    //Synergy Feyn-G
+    Dg(){
+        let pi = 1/(this.PI(-((11*6)-0.29))/100);
+        let g = (Math.sqrt(5)/2)+.5;
+        let ga = 360/(g**2)
+        let Gn = (pi*11)-(ga/1000);
+        return this.Dw(Gn**2);
+    }
+    //Synergy Stability Function
+    stability(n=1){
+        let N = (10**15)*(2240/((Math.sqrt(5)/2)));
+        let LIM = this.B(N);
+        const seq={
+            fib:{
+                1:[1,1,2,3,5,8,4,3,7,1,8,9,8,8,7,6,4,1,5,6,2,8,1,9],
+                2:[2,2,4,6,1,7,8,6,5,2,7,9,7,7,5,3,8,2,1,3,4,7,2,9],
+                3:[3,3,6,9,6,6,3,9,3,3,6,9,6,6,3,9,3,3,6,9,6,6,3,9],
+                4:[4,4,8,3,2,5,7,3,1,4,5,9,5,5,1,6,7,4,2,6,8,5,4,9],
+                5:[5,5,1,6,7,4,2,6,8,5,4,9,4,4,8,3,2,5,7,3,1,4,5,9],
+                6:[6,6,3,9,3,3,6,9,6,6,3,9,3,3,6,9,6,6,3,9,3,3,6,9],
+                7:[7,7,5,3,8,2,1,3,4,7,2,9,2,2,4,6,1,7,8,6,5,2,7,9],
+                8:[8,8,7,6,4,1,5,6,2,8,1,9,1,1,2,3,5,8,4,3,7,1,8,9],
+                9:[9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9]
+            },
+            dc:[1,2,4,8,7,5]
+        }
+        let i = (n-1) % 24;
+        let di = (n-1) % 6;
+        let dr = this.dr(n);
+        let pr = this.pr(n);
+        let F =  seq.fib[1][i];
+        let f =  seq.fib[dr][i];
+        let dc = seq.dc[di];
+        let exp = Math.sqrt(dr*pr*F*f*dc*n);
+        let diff = LIM-exp;
+        let sT = diff/LIM;
+        return sT;
+    }
+    //Synergy Syπ Position (Inverse)
+    Px(n=1){
+        return this.pin.a * (this.pin.b - (this.pin.c * n)) / (this.pin.d * n);
+    }
+    //Synergy Syπ Equation (Simplified)
+    PI(n=162){
+        return this.pi.a / ((this.pi.b * n ) + this.pi.c);
+    }
+    //Bubble Mass Base Equation
+    Mb(n=73271409227666580000){
+        let cal = ((n/216)/100)*9;
+        return cal;
+    }
+    //Bubble Mass Detect???
+    Md(n=1, p=this.Mb()){
+        let m1 = this.Ma(p);
+        let m2 = ((n-m1)/2.16)*this.PI(n);
+        return {n,p, m2, rat:(m2/m1), comp:(n/m2)};
+    }
+    Me(n=1,c=1){
+        return this.Ma(this.Mx(1/(c*n)))
+    }
+    //Synergy Bubble Mass Index
+    Mi(n=1) {
+        const M = Math.sqrt(2) + (1 / (n * (1 / Math.pow(10, 2))));
+        return this.dc / Math.sqrt(M);
+    }
+    Mn(){
+        return this.Mi((2240/(Math.sqrt(5)/2))*(10**15))
+    }
+    //Synergy Bubble Mass Position (Inverse)
+    Mx(n=1){
+        return n / (this.bu.a * this.bu.b * this.bu.c)
+    }
+    //Synergy Bubble Mass Equation (Simplified)
+    Ma(n = 1, units = false) {
+        return n * this.bu.a * this.bu.b * this.bu.c;
+    }
+    Mv(n = 1, i,units = false) {
+        return n * i * this.bu.b * this.bu.c;
+    }
+    Mu(n = 1, units = false) {
+        if (!units) {
+            return n * this.bu.a * this.bu.b * this.bu.c;
+        } else {
+            const kg = n * this.bu.a * this.bu.b * this.bu.c;
+            const joules = kg * (this.c1 ** 2);
+            const mev = kg * (this.c1 ** 2) * this.Ma(6852004036967058907839345636965988404559872);
+            const gev = mev / 1000;
+
+            if (units === 'GeV') {
+                return gev;
+            } else if (units === 'MeV') {
+                return mev;
+            } else if (units === 'j') {
+                return joules;
+            }else {
+                return { kg, joules, MeV: mev, GeV: gev };
+            }
+        }
+    }
+    //Synergy Einstein Field Equation Experimental
+    EFE(n=1, G=this.G, c=this.Qp().cx){
+        return ((8*this.PI(n)*this.Ma(G))/(c**4))*(this.Ma(n)*(c**2));
+    }
+    //Synergy Pi Mass Equation
+    S(n=0){
+        return this.Ma(n+this.SC) * this.PI(n); //162 - 0.23 = 161.77 -> wave(0) =  -3.1424910548951004e-37 (tiny pi like number?)
+    }
+    //Synergy Pi Mass Position (Inverse)
+    Sx(n=0){
+        const C = this.bu.a * this.bu.b * this.bu.c;
+        const x = C*this.pi.a*this.SC - n*this.pi.c;
+        const y = n*this.pi.b  - C*this.pi.a;
+        return Math.floor(x / y);
+    }
+    //Schrödinger Wave Equation
+    Wv(n=0){
+        const h = this.Dh();
+        const ℏ = h/(2*this.PI(n));
+        return  (-1 * (ℏ ** 2) / (2 * n));
+    }
+    //Synergy Schrödinger Wave Equation
+    Wa(n=1, V=0){
+        const m = this.S(n)
+        return this.Wv(m)+V;
+    }
+    //Synergy Schrödinger Wave Position (Inverse)
+    Wx(n=1, V=0){
+        const M = this.Wv(n)+V;
+        return this.Sx(M);
+    }
+    //Synergy Schwarzschild Radius
+    Ra(n=1){
+        const q = this.Qp();
+        return (2*q.G*this.Ma(n))/(q.cx**2);
+    }
+    //Synergy Charge Radius Experiment???
+    Rr(n=1){
+        const q = this.Qp();
+        return Math.sqrt((4*q.G*(this.Ma(n)/q.ptm))/(q.cx**2))*2;
+    }
+    //Synergy Compton Wave Length
+    Co(n=1){
+        const q = this.Qp();
+        return this.Dh()/(this.Ma(n)*q.cx);
+    }
+    //Quadrian Speed Equation
+    Qs(n){
+        const q = Math.sqrt(Math.pow(1, 2) + Math.pow(0.5, 2));
+        const a = 22.5 * (8 / 6);
+        const b = a - (1 / (1000 - n));
+        const c = b * Math.pow(10, 7);
+        const d = 1 / ( q / n );
+        return c-d;
+    }
+    //Quadrian Path Equation
+    Qp() {
+        const Z = 1/2/4/8/7/5;
+        const q = Math.sqrt(Math.pow(1, 2) + Math.pow(0.5, 2));
+        const D = 8*q;
+        const sqrt2 = Math.sqrt(2);
+        const tx = (q + 0.5) * (15 + sqrt2);
+        const ty = 90 - tx;
+        const tz = ty * 2;
+        const td = ty - tx;
+        const tu = tz * 7;
+        const t1 = 4 * tx + 3 * ty;
+        const t2 = 3 * tx + 4 * ty;
+        const px = tu + tx;
+        const py = tu + ty;
+        const vx = Math.pow(10, 3)-px;
+        const vy = Math.pow(10, 3)-py;
+        const pxz = Z*t1;
+        const pyz = Z*t2;
+        const Pe= D+pxz;
+        const Pn= D+pyz;
+        const K = Pn-Pe;
+        const pt = vy/vx;
+        const cy = this.Qs(px);
+        const cx = this.Qs(py);
+        const ptm = this.Ma(this.Mi(pt));
+        const T = 1/this.Me(ptm, cx);
+        const G  = this.Me(50-(1/44), cx);
+        const C  = this.Me(1, cx);
+        const μ0 = (4*this.PI(162))*(10e-8)
+        const ε0 = 1/(μ0*(cx**2));
+        const ZO = C / ε0;
+        const id = ε0 * μ0 * (cx**2);
+        return { id,q, tx, ty, td, tu, t1, t2, px, py, vx,vy,pt,pxz,pyz,ptm,K,T,G,C,ZO,ε0,μ0,cy, cx };
+    }
+}
