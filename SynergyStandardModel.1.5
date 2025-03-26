@@ -1,0 +1,218 @@
+/**
+ * Synergy Standard Model
+ * Created by Wesley Long on 3/26/2025.- Synergy Research
+ *
+ * THIS SOFTWARE IS PROVIDED BY WESLEY LONG “AS IS” WITHOUT ANY SUPPORT.
+ * IN NO EVENT SHALL WESLEY LONG BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+
+ */
+
+class SynergyStandardModel{
+    constructor(){
+        this.dc = 2240;
+        this.pi = { a:3940245000000, b:2217131, c:1253859750000 };
+        this.pin ={ a:20250000, b:194580, c:61919, d:2217131 };
+        this.bu = { a:1352, b:5.442245307660239, c:1.2379901546155434e-34 }
+        this.cx = this.Qp().cx;
+        this.cy = this.Qp().cy;
+        this.SC = 1/162;
+    }
+    //SyMod
+    sym(n) {
+        const sq = Math.pow(3, 2); // 3^2
+        return this.rd(sq - (n / sq - this.fl(n / sq)) * sq);
+    }
+    //Digtal Root
+    dr(n) {
+        return this.sym(this.sym(n));
+    }
+    //Polar Root
+    pr(n) {
+        return this.sym(n);
+    }
+    //Group Number
+    grp(n) {
+        const th = 3; // constant 3
+        return this.rd(Math.pow(th, 2) - ((n) / th - this.fl((n) / th)) * Math.pow(th, 2));
+    }
+    rd(n) {
+        return Math.round(n);
+    }
+    fl(n) {
+        return Math.floor(n);
+    }
+    nroot(x, n) {
+        let precision = 1e-7
+        if (x === 0) return 0;
+        let approx = x;
+        let prev = 0;
+
+        // Adjust initial guess for large numbers
+        if (x >= 1) {
+            approx = x / n;
+        }
+
+        while (Math.abs(prev - approx) > precision) {
+            prev = approx;
+            approx = ((n - 1) * prev + x / Math.pow(prev, n - 1)) / n;
+        }
+
+        return approx;
+    }
+    //Synergy Gauss’s Law (Electric Field from Structured Charge)
+    gaussE(rho) {
+        const q = this.Qp();
+        return rho * q.C * q.Z0;
+    }
+    //Synergy Gauss’s Law for Magnetism (No Magnetic Monopoles)
+    gaussB(B) {
+        return B * 0;
+    }
+    //Synergy Faraday’s Law (Structured Electromagnetic Wave Propagation)
+    faraday(E) {
+        const q = this.Qp();
+        return -1 * (E / q.C);
+    }
+    //Synergy Ampère-Maxwell Law (Structured Charge-Mass Interactions)
+    ampere(J, E) {
+        const q = this.Qp();
+        return (q.Z0 / q.C) * J + (1 / q.C ** 2) * (E);
+    }
+    //Synergy Coupling - Feyn-Wolfgang Equation
+    Fw(n=11){
+        let mx = Math.sqrt(2) + (1 / Math.sqrt((15**2) + (1 / Math.sqrt(((n + 5) * 20) - (1 / 20)))));
+        let a = n + (Math.sqrt(mx) - 1);
+        return 1/(a * (a + 1));
+    }
+    //Synergy Feyn Plank constant
+    Fh(){
+        const f = this.Fw(11);
+        const m = this.Ma(1/f);
+        const H = this.Mn()*(10**2)
+        return m/H;
+    }
+    //Synergy Feyn Plank reduced constant
+    Fhbar(){
+        const h = this.Fh();
+        return h/(2*this.PI(h));
+    }
+    //Synergy Feyn Plank Radius
+    Fr(m){
+        return 4*(this.Fhbar()/(m*this.Qa().cx));
+    }
+    //Synergy Feyn-G
+    Fg(n=11){
+        let pi = 1/(this.PI(-((n*6)-0.29))/100);
+        let g = (Math.sqrt(5)/2)+.5;
+        let ga = 360/(g**2)
+        let Gn = (pi*n)-(ga/1000);
+        return this.Fw(Gn**2);
+    }
+    //Synergy Elements
+    El(e,p,n){
+        const me = this.Ma(1);
+        const mp = this.Ma(1836.1813326060937);
+        const mn = this.Ma(1838.1813326060937);
+        const pc = mp*p;
+        const nc = mn*n;
+        const ec = me*e;
+        return (pc+nc+ec)-((pc+nc+ec)*this.Fw(11));
+    }
+    //Synergy Syπ Position (Inverse)
+    Px(n=1){
+        return this.pin.a * (this.pin.b - (this.pin.c * n)) / (this.pin.d * n);
+    }
+    //Synergy Syπ Equation (Simplified)
+    PI(n=162){
+        return this.pi.a / ((this.pi.b * n ) + this.pi.c);
+    }
+    //Bubble Mass Base Equation
+    Mb(n=73271409227666580000){
+        let cal = ((n/216)/100)*9;
+        return cal;
+    }
+    //Bubble Mass Detect???
+    Md(n=1, p=this.Mb()){
+        let m1 = this.Ma(p);
+        let m2 = ((n-m1)/2.16)*this.PI(n);
+        return {n,p, m2, rat:(m2/m1), comp:(n/m2)};
+    }
+    Me(n=1,c=1){
+        return this.Ma(this.Mx(1/(c*n)))
+    }
+    //Synergy Bubble Mass Index
+    Mi(n=1) {
+        const M = Math.sqrt(2) + (1 / (n * (1 / Math.pow(10, 2))));
+        return this.dc / Math.sqrt(M);
+    }
+    Mn(){
+        return this.Mi((2240/(Math.sqrt(5)/2))*(10**15))
+    }
+    //Synergy Bubble Mass Position (Inverse)
+    Mx(n=1){
+        return n / (this.bu.a * this.bu.b * this.bu.c)
+    }
+    //Synergy Bubble Mass Equation (Simplified)
+    Ma(n = 1, units = false) {
+        return n * this.bu.a * this.bu.b * this.bu.c;
+    }
+    //Synergy Bubble Mass Grain Equation (Simplified)
+    Mv(n = 1, i,units = false) {
+        return n * i * this.bu.b * this.bu.c;
+    }
+    //Quadrian e
+    Qe(){
+        const q = this.Qa().q;
+        const g = q+.5;
+        return Math.sqrt(g*(5-(13/30)));
+    }
+    //Quadrian Speed Equation
+    Qs(n){
+        return (Math.pow(10, 7) * (30 - (1 / (Math.pow(10, 3) - n))))-((2 * n) / Math.sqrt(5));
+    }
+    //Quadrian Path Equation
+    Qp(n) {
+        return (30 - 1 / (Math.pow(10, 3) - n)) - (2 * n / (Math.pow(10, 7) * Math.sqrt(5)));
+    }
+    //Quadrian Arena Model
+    Qa() {
+        const Z = 1/2/4/8/7/5;
+        const q = Math.sqrt(Math.pow(1, 2) + Math.pow(0.5, 2));
+        const D = 8*q;
+        const sqrt2 = Math.sqrt(2);
+        const θx = (q + 0.5) * (15 + sqrt2);
+        const θy = 90 - θx;
+        const θz = θy * 2;
+        const θv = θy - θx;
+        const θu = θz * 7;
+        const PNa = 4 * θx + 3 * θy;
+        const PEa = 3 * θx + 4 * θy;
+        const PNp = θu + θx;
+        const PEp = θu + θy;
+        const PNd = Math.pow(10, 3)-PNp;
+        const PEd = Math.pow(10, 3)-PEp;
+        const pxz = Z*θx;
+        const pyz = Z*θy;
+        const Pe = D+pxz;
+        const Pn = D+pyz;
+        const K = Pn-Pe;
+        const pt = PEd/PNd;
+        const ptm = this.Ma(this.Mi(pt)); //(Experimental)
+        const cy = this.Qs(PNp);
+        const cx = this.Qs(PEp);
+        const G  = this.Me(50-(1/44), cx);
+        const C  = this.Me(1, cx);
+        const μ0 = (4*this.PI(162))*(10e-8)
+        const ε0 = 1/(μ0*(cx**2));
+        const ZO = C / ε0;
+        const id = ε0 * μ0 * (cx**2);
+        return { id,q, θx, θy, θv, θz, θu, PNa, PEa, PNp, PEp, PNd,PEd,pt,ptm,pxz,pyz,K,G,C,ZO,ε0,μ0,cy, cx };
+    }
+}
