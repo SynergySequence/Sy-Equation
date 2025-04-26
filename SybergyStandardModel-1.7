@@ -1,0 +1,480 @@
+/**
+ * Synergy Standard Model 1.7
+ * Created by Wesley Long on 4/24/2025.- Synergy Research
+ *
+ * THIS SOFTWARE IS PROVIDED BY WESLEY LONG “AS IS” WITHOUT ANY SUPPORT.
+ * IN NO EVENT SHALL WESLEY LONG BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+
+ */
+
+class SynergyStandardModel{
+    constructor(){
+        this.dc = 2240;
+        this.pi = { a:3940245000000, b:2217131, c:1253859750000 };
+        this.pin ={ a:20250000, b:194580, c:61919, d:2217131 };
+        this.bu = { a:1352, b:5.442245307660239, c:1.2379901546155434e-34 }
+        this.cx = this.Qp().cx;
+        this.cy = this.Qp().cy;
+        this.SC = 1/162;
+    }
+    pos(v=1){
+        return 20250000*(194580-(61919*v))/(2217131*v);
+    }
+    sypi(p=162){
+        return 3940245000000/((2217131*p)+1253859750000);
+    }
+    //SyMod
+    sym(n) {
+        const sq = Math.pow(3, 2); // 3^2
+        return this.rd(sq - (n / sq - this.fl(n / sq)) * sq);
+    }
+    //Digtal Root
+    dr(n) {
+        return this.sym(this.sym(n));
+    }
+    //Polar Root
+    pr(n) {
+        return this.sym(n);
+    }
+    //Group Number
+    grp(n) {
+        const th = 3; // constant 3
+        return this.rd(Math.pow(th, 2) - ((n) / th - this.fl((n) / th)) * Math.pow(th, 2));
+    }
+    rd(n) {
+        return Math.round(n);
+    }
+    fl(n) {
+        return Math.floor(n);
+    }
+    nroot(x, n) {
+        try {
+            const neg = (n % 2 === 1) && (x < 0);
+            if (neg) { x = -x; }
+            const pos = Math.pow(x, 1 / n);
+            const nCheck = Math.pow(pos, n);
+            if (Math.abs(x - nCheck) < 1 && (x > 0 === nCheck > 0)) {
+                return neg ? -pos : pos;
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    }
+    //Synergy Gauss’s Law (Electric Field from Structured Charge)
+    gaussE(rho) {
+        const q = this.Qp();
+        return rho * q.C * q.Z0;
+    }
+    //Synergy Gauss’s Law for Magnetism (No Magnetic Monopoles)
+    gaussB(B) {
+        return B * 0;
+    }
+    //Synergy Faraday’s Law (Structured Electromagnetic Wave Propagation)
+    faraday(E) {
+        const q = this.Qp();
+        return -1 * (E / q.C);
+    }
+    //Synergy Ampère-Maxwell Law (Structured Charge-Mass Interactions)
+    ampere(J, E) {
+        const q = this.Qp();
+        return (q.Z0 / q.C) * J + (1 / q.C ** 2) * (E);
+    }
+    //Synergy Coupling Equation
+    F(n=11){
+        return n + (Math.sqrt(Math.sqrt(2) + (1 / Math.sqrt((15**2) + (1 / Math.sqrt(((n + 5) * 20) - (1 / 20)))))) - 1);
+    }
+    //Feyn-Wolfgang Equation
+    Fw(n=11){
+        let mx = Math.sqrt(2) + (1 / Math.sqrt((15**2) + (1 / Math.sqrt(((n + 5) * 20) - (1 / 20)))));
+        let a = n + (Math.sqrt(mx) - 1);
+        return 1/(a * (a + 1));
+    }
+    //Feyn-Wolfgang Equation (Simplified)
+    Fe(n=11){
+        let a = n + (1084554109/5000000000);
+        return 1/(a * (a + 1));
+    }
+    //Synergy Feyn Plank constant
+    Fh(){
+        const f = this.Fe(11);
+        const m = this.Ma(1/f);
+        const H = this.Mn()*(10**2)
+        return m/H;
+    }
+    //Synergy Feyn Plank constants
+    Fhc(){
+        const h = this.Fh();
+        const hb = this.Fhbar();
+        const G = this.Fg();
+        const c = this.Qa().cx;
+        const ε0 = this.Qa().ε0;
+        const k = this.Ma((88**2)*1957);
+        const tp = Math.sqrt((hb*G)/(c**5));
+        const lp = Math.sqrt((hb*G)/(c**3));
+        const mp = Math.sqrt((hb*c)/G)
+        const Tp = Math.sqrt((hb*(c**5))/(G*(k**2)));
+        const qp = Math.sqrt( 4*this.PI()*ε0*hb*c);
+        return {h,hb,tp,lp,mp,Tp,qp}
+    }
+    //Synergy Feyn Plank reduced constant
+    Fhbar(){
+        const h = this.Fh();
+        return h/(2*this.PI(h));
+    }
+    //Synergy Feyn Plank Radius
+    Fr(m){
+        return 4*(this.Fhbar()/(m*this.Qa().cx));
+    }
+    //Synergy Feyn-G
+    Fg(n=11){
+        let PI = this.PI(-(67.36530126891));
+        let pi = 1/(PI/100);
+        let g = (Math.sqrt(5)/2)+.5;
+        let ga = 360/(g**2)
+        let Gn = ((pi*n)-(ga/1000))**2;
+        return this.Fe(Gn);
+    }
+    Fx(n,p){
+        let PI = this.П(p);
+        let pi = 100/PI;
+        let g = (Math.sqrt(5)/2)+.5;
+        let ga = 360/(g**2)
+        return ((pi*n)-(ga/1000))**2;
+    }
+
+    Ed(q){
+        switch(q){
+            case"u":
+                return sy.Ma(1957*((1/22)**2));
+                break;
+            case"d":
+                return sy.Ma(1957*((1/14)**2));
+                break;
+            case"s":
+                return sy.Ma(1957*((1/3.25)**2));
+                break;
+            case"c":
+                return sy.Ma(1957*((1/1.126)**2));
+                break;
+            case"b":
+                return sy.Ma(1957*((1/2)**2));
+                break;
+            case"t":
+                return sy.Ma(1957*((1/13)**2));
+                break;
+        }
+    }
+    //Synergy Particles
+    Ep(q1,q2,q3){
+        const Q1 = this.Ed(q1);
+        const Q2 = this.Ed(q2);
+        const Q3 = this.Ed(q3);
+        //return ((Q1+Q2+Q3)-((Q1+Q2+Q3)*(this.Fg()*11)))*99;
+        return Math.sqrt(Q1+Q2+Q3)/1111111111111;
+    }
+    //Synergy Elements
+    El(e,p,n){
+        const me = this.Ma(1);
+        const mp = this.Ma(1836.1813326060937);
+        const mn = this.Ma(1838.1813326060937);
+        const pc = mp*p;
+        const nc = mn*n;
+        const ec = me*e;
+        return (pc+nc+ec)-((pc+nc+ec)*this.Fw(11));
+    }
+    //Synergy Syπ Position (Inverse)
+    Px(n=1){
+        return this.pin.a * (this.pin.b - (this.pin.c * n)) / (this.pin.d * n);
+    }
+    //Synergy Syπ Equation (Simplified)
+    П(n=162){
+        return this.pi.a / ((this.pi.b * n ) + this.pi.c);
+    }
+    PI(n=162){
+        return this.pi.a / ((this.pi.b * n ) + this.pi.c);
+    }
+    //Bubble Mass Base Equation
+    //73271271717561730000
+    Mb(n=73271409227666580000){
+        let cal = ((n/216)/100)*9;
+        return cal;
+    }
+    //Bubble Mass Detect???
+    Md(n=1, p=this.Mb()){
+        let m1 = this.Ma(p);
+        let m2 = ((n-m1)/2.16)*this.PI(n);
+        return {n,p, m2, rat:(m2/m1), comp:(n/m2)};
+    }
+    Me(n=1,c=1){
+        return this.Ma(this.Mx(1/(c*n)))
+    }
+    //Synergy Bubble Mass Index
+    Mi(n=1) {
+        const M = Math.sqrt(2) + (1 / (n * (1 / Math.pow(10, 2))));
+        return this.dc / Math.sqrt(M);
+    }
+    //Synergy Bubble Mass Index (inverse)
+    Mxi(n=1) {
+        const dc = 2240;
+        const sqrt2 = Math.sqrt(2);
+        const result = 100 / (((dc / n) ** 2) - sqrt2);
+        return result;
+    }
+    Mn(){
+        return this.Mi((2240/(Math.sqrt(5)/2))*(10**15))
+        //(2240/(sqrt(5)/2))*(10^15)
+    }
+    //Synergy Bubble Mass Position (Inverse)
+    Mx(n=1){
+        return n / (this.bu.a * this.bu.b * this.bu.c)
+    }
+    //Synergy Bubble Mass Equation (Simplified)
+    Ma(n = 1, units = false) {
+        return n * this.bu.a * this.bu.b * this.bu.c;
+    }
+    //Synergy Bubble Mass Grain Equation (Simplified)
+    Mv(n = 1, i,units = false) {
+        return n * i * this.bu.b * this.bu.c;
+    }
+    //Quadrian e
+    Qe(){
+        const q = Math.sqrt(5)/2;
+        const g = q+.5;
+        return Math.sqrt(g*(5-(13/30)));
+    }
+    //Quadrian Speed Equation
+    Qs(n){
+        return (Math.pow(10, 7) * (30 - (1 / (Math.pow(10, 3) - n))))-((2 * n) / Math.sqrt(5));
+    }
+    //Quadrian Path Equation
+    Qp(n) {
+        return (30 - 1 / (Math.pow(10, 3) - n)) - (2 * n / (Math.pow(10, 7) * Math.sqrt(5)));
+    }
+    //Quadrian Arena Model
+    Qa() {
+        const Z = 1/2/4/8/7/5;
+        const q = Math.sqrt(Math.pow(1, 2) + Math.pow(0.5, 2));
+        const D = 8*q;
+        const sqrt2 = Math.sqrt(2);
+        const θx = (q + 0.5) * (15 + sqrt2);
+        const θy = 90 - θx;
+        const θz = θy * 2;
+        const θv = θy - θx;
+        const θu = θz * 7;
+        const PNa = 4 * θx + 3 * θy;
+        const PEa = 3 * θx + 4 * θy;
+        const PEp = θu + θx;
+        const PNp = θu + θy;
+        const PNd = Math.pow(10, 3)-PNp;
+        const PEd = Math.pow(10, 3)-PEp;
+        const pxz = Z*θx;
+        const pyz = Z*θy;
+        const Pe = D+pxz;
+        const Pn = D+pyz;
+        const K = Pn-Pe;
+        const pt = PEd/PNd;
+        const ptm = this.Ma(this.Mi(pt)); //(Experimental)
+        const cy = this.Qs(PNp);
+        const cx = this.Qs(PEp);
+        const C  = this.Me(1, cy);
+        const μ0 = (4*this.PI(162))*(10e-8)
+        const ε0 = 1/(μ0*(cy**2));
+        const ZO = C / ε0;
+        const id = ε0 * μ0 * (cy**2);
+        const cz = Math.sqrt(1/(ε0*μ0));
+        return { id,q, θx, θy, θv, θz, θu, PNa, PEa, PNp, PEp, PNd,PEd,pt,ptm,pxz,pyz,K,C,ZO,ε0,μ0,cy, cx ,cz};
+    }
+    //Terrence Howard Debunk Equations
+    //Potential Lines
+    Lp(n){
+        return (2*n)*(n+1)
+    }
+    //Lines
+    Lv(n){
+        this.Lp(n)-(n**2)
+    }
+    //Hypotenuse
+    Lh(n){
+        return Math.sqrt((2*n)**2);
+    }
+}
+
+const sy = new SynergyStandardModel();
+
+let Gn=sy.Fx(11,-Math.sqrt(4538));
+let Kn=(Gn**2)*sy.Mx(sy.Fe(Gn));
+let KN=1097812076491272500000000000000;
+
+console.clear();
+console.log('----------------------------------------');
+console.log('Quadrian Arena',sy.Qa());
+console.log('----------------------------------------');
+console.log('Pi',sy.PI(162));
+console.log('Quadrian Ratio',sy.Qa().q);
+console.log('Golden Ratio',sy.Qa().q+.5);
+console.log('Golden Ratio Reciprocal',sy.Qa().q-.5);
+console.log('Quadrian Euler e',sy.Qe());
+console.log('----------------------------------------');
+console.log('Speed of Light (East)',sy.Qa().cx);
+console.log('Speed of Light (North)',sy.Qa().cy);
+console.log('Vacuum Permeability (μ0)',sy.Qa().μ0);
+console.log('Vacuum Permittivity (ε0)',sy.Qa().ε0);
+console.log('Inverse SOL (1/c^2)',sy.Qa().C);
+console.log('Characteristic Impedance of Free Space (Z0)',sy.Qa().ZO);
+console.log('Electromagnetic Identity',sy.Qa().id);
+console.log('----------------------------------------');
+console.log('Fine-structure',1/sy.Fe(11));
+console.log('Gravity',sy.Fe(Gn));
+console.log('Kilogram Kn->(kg)',sy.Ma(Kn));
+console.log('Kilogram KN->(kg)',sy.Ma(KN));
+console.log('----------------------------------------');
+console.log('Planck constants',sy.Fhc());
+console.log('----------------------------------------');
+console.log('Muon Magnetic Moment',sy.Ma(10118108)); // Mu Moment 11*919828
+console.log('Boltzmann',sy.Ma(15155008)); // Boltzman 11*1377728
+console.log('Avogadro',sy.Ma(66111788)); // Arvo 11*6010162.5454545454545454545454545
+console.log('eV',sy.Ma(175888888888)); // eV 11*44.363636363636363636363636363636
+console.log('----------------------------------------');
+console.log('Electron Mass',sy.Ma(1));
+console.log('Muon Mass',sy.Ma(207));
+console.log('Proton Mass',sy.Ma(1836.1813326060937));
+console.log('Neutron Mass',sy.Ma(1838.1813326060937));
+console.log('Deuteron Mass',sy.Ma(3669));
+console.log('----------------------------------------');
+console.log('Up Quark',sy.Ma(1957*((1/22)**2)));
+console.log('Down Quark',sy.Ma(1957*((1/14)**2)));
+console.log('Strange Quark',sy.Ma(1957*((1/3.25)**2)));
+console.log('Charm Quark',sy.Ma(1957*((1/1.126)**2)));
+console.log('Bottom Quark',sy.Ma(1957*((1/2)**2)));
+console.log('Top Quark',sy.Ma(1957*((1/13)**2)));
+console.log('----------------------------------------');
+console.log('Electron (νe)',sy.Ma((1/66111788)*0.5));
+console.log('Muon (νμ)',sy.Ma((1/(19*523523))));
+console.log('Tau (ντ)',sy.Ma(((1/2.61)/(19*523523))));
+console.log('----------------------------------------');
+console.log('Higgs Boson',sy.Ma(244625));
+console.log('W Strong Boson',sy.Ma(154560));
+console.log('Z Weak Boson',sy.Ma(176130));
+console.log('----------------------------------------');
+console.log('Strong Force',sy.Ma(273)); // Strong Force 11*24.8181818181
+console.log('Weak Force',sy.Ma(156328)); //Weak Force 11*14211.636363636363636363636363636
+console.log('----------------------------------------');
+console.log('H',sy.El(1,1,0));
+console.log('Li',sy.El(3,3,3));
+console.log('O',sy.El(8,8,8));
+console.log('Mercury - Hg',sy.El(80,80,122));
+console.log('Sulfur - S',sy.El(16,16,16));
+console.log('Salt - Na',sy.El(11,11,11));
+console.log('Gold - Au',sy.El(79,79,118));
+console.log('Silver - Ag',sy.El(47,47,60));
+console.log('Cesium - Cs',sy.El(55,55,55));
+console.log('Beryllium - Be',sy.El(4,4,5));
+console.log('----------------------------------------');
+
+
+/*
+Output:
+Quadrian Arena {
+  id: 1,
+  q: 1.118033988749895,
+  'θx': 26.55875544251916,
+  'θy': 63.44124455748084,
+  'θv': 36.882489114961686,
+  'θz': 126.88248911496169,
+  'θu': 888.1774238047318,
+  PNa: 296.55875544251916,
+  PEa: 333.44124455748084,
+  PNp: 951.6186683622127,
+  PEp: 914.736179247251,
+  PNd: 48.3813316377873,
+  PEd: 85.26382075274898,
+  pt: 1.7623289369355708,
+  ptm: 2.675579506840958e-28,
+  pxz: 0.011856587251124625,
+  pyz: 0.028321984177446805,
+  K: 0.016465396926323095,
+  C: 3.3356409569522998e-9,
+  ZO: 376.73031658418466,
+  'ε0': 8.854187757429692e-12,
+  'μ0': 0.000001256637073723813,
+  cy: 299792457.5532486,
+  cx: 299881898.7962603,
+  cz: 299792457.5532486
+}
+----------------------------------------
+Pi 3.1415926843095328
+Quadrian Ratio 1.118033988749895
+Golden Ratio 1.618033988749895
+Golden Ratio Reciprocal 0.6180339887498949
+Quadrian Euler e 2.7182755345913434
+----------------------------------------
+Speed of Light (East) 299881898.7962603
+Speed of Light (North) 299792457.5532486
+Vacuum Permeability (μ0) 0.000001256637073723813
+Vacuum Permittivity (ε0) 8.854187757429692e-12
+Inverse SOL (1/c^2) 3.3356409569522998e-9
+Characteristic Impedance of Free Space (Z0) 376.73031658418466
+Electromagnetic Identity 1
+----------------------------------------
+Fine-structure 137.03599920601394
+Gravity 6.674378179633154e-11
+Kilogram Kn->(kg) 0.9999882861772882
+Kilogram KN->(kg) 1
+----------------------------------------
+Planck constants {
+  h: 6.626987439910871e-34,
+  hb: 1.0544157551953982e-34,
+  tp: 5.3868603813027e-44,
+  lp: 1.6154219196954002e-35,
+  mp: 2.1765851558146028e-8,
+  Tp: 1.4179078309055014e+32,
+  qp: 1.8756869940237e-18
+}
+----------------------------------------
+Muon Magnetic Moment 9.21661203831769e-24
+Boltzmann 1.3804737918749321e-23
+Avogadro 6.022140712033385e-23
+eV 1.6021766626047706e-19
+----------------------------------------
+Electron Mass 9.109027140565893e-31
+Muon Mass 1.8855686180971397e-28
+Proton Mass 1.6725825593709357e-27
+Neutron Mass 1.6744043647990487e-27
+Deuteron Mass 3.3421020578736265e-27
+----------------------------------------
+Up Quark 3.683133494646168e-30
+Down Quark 9.095084752085435e-30
+Strange Quark 1.6877033007420074e-28
+Charm Quark 1.4060023309919469e-27
+Bottom Quark 4.456591528521863e-28
+Top Quark 1.0548145629637546e-29
+----------------------------------------
+Electron (νe) 6.889109655123751e-39
+Muon (νμ) 9.157620220743223e-38
+Tau (ντ) 3.508666751242614e-38
+----------------------------------------
+Higgs Boson 2.2282957642609314e-25
+W Strong Boson 1.4078912348458645e-25
+Z Weak Boson 1.6043729502678705e-25
+----------------------------------------
+Strong Force 2.4867644093744887e-28
+Weak Force 1.4239959948303847e-25
+----------------------------------------
+H 1.66128139028063e-27
+Li 9.970401108291187e-27
+O 2.65877362887765e-26
+Mercury - Hg 3.3568916001205512e-25
+Sulfur - S 5.3175472577553e-26
+Salt - Na 3.6558137397067685e-26
+Gold - Au 3.2737913603850878e-25
+Silver - Ag 1.7781136409217556e-25
+Cesium - Cs 1.827906869853384e-25
+Beryllium - Be 1.4956053790204684e-26
+ */
