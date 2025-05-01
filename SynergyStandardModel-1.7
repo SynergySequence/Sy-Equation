@@ -20,15 +20,10 @@ class SynergyStandardModel{
         this.pi = { a:3940245000000, b:2217131, c:1253859750000 };
         this.pin ={ a:20250000, b:194580, c:61919, d:2217131 };
         this.bu = { a:1352, b:5.442245307660239, c:1.2379901546155434e-34 }
+        this.fe = {a:1084554109,b:5000000000};
         this.cx = this.Qp().cx;
         this.cy = this.Qp().cy;
         this.SC = 1/162;
-    }
-    pos(v=1){
-        return 20250000*(194580-(61919*v))/(2217131*v);
-    }
-    sypi(p=162){
-        return 3940245000000/((2217131*p)+1253859750000);
     }
     //SyMod
     sym(n) {
@@ -86,6 +81,17 @@ class SynergyStandardModel{
         const q = this.Qp();
         return (q.Z0 / q.C) * J + (1 / q.C ** 2) * (E);
     }
+    //Synergy Syπ Position (Inverse)
+    Px(n=1){
+        return this.pin.a * (this.pin.b - (this.pin.c * n)) / (this.pin.d * n);
+    }
+    //Synergy Syπ Equation (Simplified)
+    П(n=162){
+        return this.pi.a / ((this.pi.b * n ) + this.pi.c);
+    }
+    PI(n=162){
+        return this.pi.a / ((this.pi.b * n ) + this.pi.c);
+    }
     //Synergy Coupling Equation
     F(n=11){
         return n + (Math.sqrt(Math.sqrt(2) + (1 / Math.sqrt((15**2) + (1 / Math.sqrt(((n + 5) * 20) - (1 / 20)))))) - 1);
@@ -98,7 +104,7 @@ class SynergyStandardModel{
     }
     //Feyn-Wolfgang Equation (Simplified)
     Fe(n=11){
-        let a = n + (1084554109/5000000000);
+        let a = n + (this.fe.a/this.fe.b);
         return 1/(a * (a + 1));
     }
     //Synergy Feyn Plank constant
@@ -110,9 +116,10 @@ class SynergyStandardModel{
     }
     //Synergy Feyn Plank constants
     Fhc(){
+        let Gn=sy.Fx(11,-Math.sqrt(4538));
         const h = this.Fh();
         const hb = this.Fhbar();
-        const G = this.Fg();
+        const G = this.Fe(Gn);
         const c = this.Qa().cy;
         const ε0 = this.Qa().ε0;
         const k = this.Ma((88**2)*1957);
@@ -132,15 +139,7 @@ class SynergyStandardModel{
     Fr(m){
         return 4*(this.Fhbar()/(m*this.Qa().cx));
     }
-    //Synergy Feyn-G
-    Fg(n=11){
-        let PI = this.PI(-(67.36530126891));
-        let pi = 1/(PI/100);
-        let g = (Math.sqrt(5)/2)+.5;
-        let ga = 360/(g**2)
-        let Gn = ((pi*n)-(ga/1000))**2;
-        return this.Fe(Gn);
-    }
+    //Feyn-Pencil Equation - based on Feynman's quote about the Fine-structure constant "how did God push his pencil"
     Fx(n,p){
         let PI = this.П(p);
         let pi = 100/PI;
@@ -148,7 +147,7 @@ class SynergyStandardModel{
         let ga = 360/(g**2)
         return ((pi*n)-(ga/1000))**2;
     }
-
+    //Synergy Quark Types
     Ed(q){
         switch(q){
             case"u":
@@ -189,19 +188,7 @@ class SynergyStandardModel{
         const ec = me*e;
         return (pc+nc+ec)-((pc+nc+ec)*this.Fw(11));
     }
-    //Synergy Syπ Position (Inverse)
-    Px(n=1){
-        return this.pin.a * (this.pin.b - (this.pin.c * n)) / (this.pin.d * n);
-    }
-    //Synergy Syπ Equation (Simplified)
-    П(n=162){
-        return this.pi.a / ((this.pi.b * n ) + this.pi.c);
-    }
-    PI(n=162){
-        return this.pi.a / ((this.pi.b * n ) + this.pi.c);
-    }
     //Bubble Mass Base Equation
-    //73271271717561730000
     Mb(n=73271409227666580000){
         let cal = ((n/216)/100)*9;
         return cal;
@@ -227,6 +214,7 @@ class SynergyStandardModel{
         const result = 100 / (((dc / n) ** 2) - sqrt2);
         return result;
     }
+    //Synergy Bubble Mass Natural Limit
     Mn(){
         return this.Mi((2240/(Math.sqrt(5)/2))*(10**15))
         //(2240/(sqrt(5)/2))*(10^15)
@@ -291,26 +279,13 @@ class SynergyStandardModel{
         const cz = Math.sqrt(1/(ε0*μ0));
         return { id,q, θx, θy, θv, θz, θu, PNa, PEa, PNp, PEp, PNd,PEd,pt,ptm,pxz,pyz,K,C,ZO,ε0,μ0,cy, cx ,cz};
     }
-    //Terrence Howard Debunk Equations
-    //Potential Lines
-    Lp(n){
-        return (2*n)*(n+1)
-    }
-    //Lines
-    Lv(n){
-        this.Lp(n)-(n**2)
-    }
-    //Hypotenuse
-    Lh(n){
-        return Math.sqrt((2*n)**2);
-    }
 }
-
 const sy = new SynergyStandardModel();
 
 let Gn=sy.Fx(11,-Math.sqrt(4538));
 let Kn=(Gn**2)*sy.Mx(sy.Fe(Gn));
 let KN=1097812076491272500000000000000;
+
 
 console.clear();
 console.log('----------------------------------------');
@@ -326,7 +301,7 @@ console.log('Speed of Light (East)',sy.Qa().cx);
 console.log('Speed of Light (North)',sy.Qa().cy);
 console.log('Vacuum Permeability (μ0)',sy.Qa().μ0);
 console.log('Vacuum Permittivity (ε0)',sy.Qa().ε0);
-console.log('Inverse SOL (1/c^2)',sy.Qa().C);
+console.log('Inertial Impedance*',sy.Qa().C);
 console.log('Characteristic Impedance of Free Space (Z0)',sy.Qa().ZO);
 console.log('Electromagnetic Identity',sy.Qa().id);
 console.log('----------------------------------------');
@@ -419,7 +394,7 @@ Speed of Light (East) 299881898.7962603
 Speed of Light (North) 299792457.5532486
 Vacuum Permeability (μ0) 0.000001256637073723813
 Vacuum Permittivity (ε0) 8.854187757429692e-12
-Inverse SOL (1/c^2) 3.3356409569522998e-9
+Inertial Impedance* 3.3356409569522998e-9
 Characteristic Impedance of Free Space (Z0) 376.73031658418466
 Electromagnetic Identity 1
 ----------------------------------------
