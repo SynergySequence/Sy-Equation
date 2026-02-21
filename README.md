@@ -1,2 +1,2 @@
-# Sy-Equation
-This is the completed function for the SyπEquation.
+# Synergy Standard Model
+This is the completed framework for the SSM
